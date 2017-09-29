@@ -21,14 +21,14 @@ class Crud {
   }
 
   /* Find records for table
-  
+
   Pass in an options object to change settings:
   * fields
   * filterByFormula
   * maxRecords
   * pageSize
   * sort
-  
+
   See Airtable documentation for details */
   find(options) {
     return (req, res, next) => {
@@ -48,8 +48,8 @@ class Crud {
       }, (err) => {
         if (err) { console.error(err); return; }
       });
-      
-      
+
+
     }
   }
 
@@ -57,7 +57,7 @@ class Crud {
   // To use, create a form with the input fields matching the record fields
   create() {
     return (req, res, next) => {
-      base(this.table).create(req.body, function(err, record) {
+      base(this.table).create(req.body, (err, record) => {
         if (err) { console.error(err); return; }
         console.log(record.getId());
         req[this.resultKey] = record;
@@ -70,7 +70,7 @@ class Crud {
   // To use, create a form with the input fields matching the record fields
   update() {
     return (req, res, next) => {
-      base(this.table).update(req.params[this.queryKey], req.body, function(err, record) {
+      base(this.table).update(req.params[this.queryKey], req.body, (err, record) => {
         if (err) { console.error(err); return; }
         console.log(record.getId());
         req[this.resultKey] = record;
